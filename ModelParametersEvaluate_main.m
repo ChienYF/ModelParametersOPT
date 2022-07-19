@@ -142,7 +142,7 @@ range = ub-lb;
 for i = 497:n_samp
     P_sample(i,:) = lb + round(sample(i,:).*range,4);
     P_x = [P_sample(i,1:3);P_sample(i,4:6)];
-    [f_motion_error(i,:),f(i,:)] = task10new_objFun(P_x,auxdata, Traj, x0_temp, u0_temp, bounds);
+    f_motion_error(i,:)= TrajOpt(P_x,auxdata, Traj, x0_temp, u0_temp, bounds);
     disp([num2str(i),'th sample done.']);
 end
 % runtime = toc;
