@@ -80,8 +80,7 @@ for n = 1:n_traj
         end
         
         % 計算軌跡和量測軌跡的差
-        temp = evaluateTracking_new( Traj(:,n), X_state_opt(:,1), tolerance )/n_node ;
-        %temp2 = evaluateTracking( Traj(:,n), X_state_opt(:,1))/n_node ;
+        temp = evaluateTracking( Traj(:,n), X_state_opt(:,1), tolerance )/n_node ;
         % 只打算留最小誤差
         if temp < current_min
             current_min = temp;
