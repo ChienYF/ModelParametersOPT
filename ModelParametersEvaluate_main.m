@@ -126,9 +126,7 @@ bounds.ub_a = [ opt_traj_ub(1:n_state); opt_traj_ub];
 bounds.lb_b = opt_traj_lb;
 bounds.ub_b = opt_traj_ub;
 
-
-
-%% 
+%% get parameters samples
 tic ; start_time =  datestr(now, 'mmdd-HHMM');
 n_samp = 600;  gap = 5;
 f_motion_errpr = zeros(n_samp,n_traj); f = zeros(n_samp,1);
@@ -139,11 +137,12 @@ sample = p(2:gap:n_samp*gap+2,:);
 P_sample = zeros(n_samp, 6); 
 lb = [lb(1,:),lb(2,:)];  ub = [ub(1,:),ub(2,:)]; %重新排列
 range = ub-lb;
-%%
+
+%% calculate the error of rebuilded traj.
 for i = 497:n_samp
     P_sample(i,:) = lb + round(sample(i,:).*range,4);
     P_x = [P_sample(i,1:3);P_sample(i,4:6)];
-    [f_motion_errpr(i,:),f(i,:)] = task10new_objFun(P_x,auxdata, Traj, x0_temp, u0_temp, bounds);
+    [f_motion_error(i,:),f(i,:)] = task10new_objFun(P_x,auxdata, Traj, x0_temp, u0_temp, bounds);
     disp([num2str(i),'th sample done.']);
 end
 % runtime = toc;
