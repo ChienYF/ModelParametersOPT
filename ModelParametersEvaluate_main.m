@@ -89,7 +89,7 @@ for j = 1 : n_control
 end
 
 
-%% intital guess of model parameters
+%  intital guess of model parameters
 P0 = ones(n_muscle,3); P = ones(n_muscle,3);
 % Muscle Parameters metrix:
 %  [mus1 maxisometric force , mus1 opt length , mus1 tendon slack length ;
@@ -101,7 +101,7 @@ for i = 1: n_muscle
     P(i,3) = muscle.get(i-1).getTendonSlackLength();
 end
 
-%%  Traj opt. boundary setting
+%  Traj opt. boundary setting
 Pos_LB = -0.2;       Pos_UB = 0.2;
 Vel_LB = -10;         Vel_UB = 10;
 Act_LB(1:n_muscle) = 0.011;    Act_UB(1:n_muscle) = 0.999; % same as model xml
@@ -126,7 +126,7 @@ bounds.ub_a = [ opt_traj_ub(1:n_state); opt_traj_ub];
 bounds.lb_b = opt_traj_lb;
 bounds.ub_b = opt_traj_ub;
 
-%% get parameters samples
+% get parameters samples
 tic ; start_time =  datestr(now, 'mmdd-HHMM');
 n_samp = 600;  gap = 5;
 f_motion_errpr = zeros(n_samp,n_traj); f = zeros(n_samp,1);
@@ -138,7 +138,7 @@ P_sample = zeros(n_samp, 6);
 lb = [lb(1,:),lb(2,:)];  ub = [ub(1,:),ub(2,:)]; %重新排列
 range = ub-lb;
 
-%% calculate the error of rebuilded traj.
+% calculate the error of rebuilded traj.
 for i = 497:n_samp
     P_sample(i,:) = lb + round(sample(i,:).*range,4);
     P_x = [P_sample(i,1:3);P_sample(i,4:6)];
