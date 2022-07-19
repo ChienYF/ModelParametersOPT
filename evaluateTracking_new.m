@@ -1,5 +1,5 @@
 % measurment僅單一自由度
-function match = evaluateTracking_new( measurment, coordinate_part_of_state, tolerance )
+function match = evaluateTracking( measurment, coordinate_part_of_state, tolerance )
 match = 0;
 % calculate the square of tracking error
 for i = 1 : length(measurment) 
