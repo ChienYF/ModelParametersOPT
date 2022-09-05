@@ -4,3 +4,10 @@
 - The OpenSim-Matlab interface used in the optimization progress is adapted from Brian Umberger & Leng-Feng Lee's work in 2015, form UMass Amherst.
 
 Author: Yu-Fan Chien, NTU.
+## Goal Motion
+The goal of trajectory optimization used in the thesis.
+
+## Osim Model
+The OpenSim models (.osim) used in the thesis.
+
+## Matlab code
